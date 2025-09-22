@@ -5,3 +5,11 @@ This is a repo for the paper titled 'HypRQ‑VAE: Long‑Tail‑Aware Item Index
 # Introduction
 Sequential recommender systems model user behavior as item‑ID sequences, while recent generative methods cast recommendation as a language task for large language models (LLMs). 
 This shift enables the incorporation of richer textual semantics but introduces a fundamental mismatch: LLMs operate on text tokens, whereas recommender systems depend on discrete item indices. This misalignment often leads to hallucinations in generative recommendations. Some efforts attempt to bridge the gap with Euclidean item vocabularies, but they struggle with the long‑tailed distribution typical of real catalogs, where a small number of head items dominate and a vast number of tail items reflect users' niche preferences. To address this issue, we introduce Hyperbolic Residual-Quantized Variational AutoEncoder (HypRQ‑VAE), the first framework to learn item indexing in hyperbolic space. Leveraging the exponential expansion volume of the hyperbolic geometry, HypRQ‑VAE encodes rich textual semantics while naturally capturing the power law structure of user-item interactions and preserving the fidelity of tail items without aggressive compression. Experiments on three benchmark datasets show that HypRQ‑VAE significantly improves the performance of recommendation, especially for tail items, outperforming Euclidean baselines. Our analysis attributes these gains to the unique representational capacity of hyperbolic space in generative recommendation. 
+
+# Requirement
+To install requirements, run:
+
+``` pip install -r requirements.txt ```
+
+# Example to run
+``` python examples/model_name.py ```
