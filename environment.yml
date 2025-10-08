@@ -1,4 +1,4 @@
-name: letter
+name: hyp_rqvae
 channels:
   - pyg
   - conda-forge
