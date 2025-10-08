@@ -9,7 +9,7 @@ This shift enables the incorporation of richer textual semantics but introduces 
 # Requirement
 To install requirements, run:
 
-``` pip install -r requirements.txt ```
+``` conda env create -f environment.yml ```
 
 # Example to run
 ``` python examples/model_name.py ```
