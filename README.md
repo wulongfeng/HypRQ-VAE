@@ -11,5 +11,7 @@ To install requirements, run:
 
 ``` conda env create -f environment.yml ```
 
+``` conda activate hyper_rqvae```
+
 # Example to run
 ``` python examples/model_name.py ```
