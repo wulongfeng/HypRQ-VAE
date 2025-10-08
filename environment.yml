@@ -592,4 +592,3 @@ dependencies:
       - typing-extensions==4.12.2
       - undecorated==0.3.0
       - wandb==0.19.2
-prefix: /home/longfeng/anaconda3/envs/letter
