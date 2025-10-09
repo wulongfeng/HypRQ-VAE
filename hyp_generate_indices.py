@@ -42,62 +42,9 @@ def get_collision_item(all_indices_str):
 
     return collision_item_groups
 
-# dataset = "Games"
-# ckpt_path = "/zhengbowen/rqvae_ckpt/xxxx"
-# output_dir = f"/zhengbowen/data/{dataset}/"
 
-#dataset = "Arts"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Arts/Jan-23-2025_12-50-51/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Tiger_Arts/Jan-23-2025_15-31-56/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Arts_v5/Feb-06-2025_11-41-41/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Arts/Apr-27-2025_12-27-19/best_collision_model.pth'
-
-#dataset = "Instruments"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Instruments/Jan-23-2025_12-54-54/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Tiger_Instruments/Jan-23-2025_15-30-38/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v2/Jan-31-2025_11-24-09/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v3/Feb-04-2025_16-49-52/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v5/Feb-05-2025_11-45-13/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v7/Feb-05-2025_16-41-33/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v8/Feb-05-2025_16-46-22/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v9/Feb-07-2025_10-58-15/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v10/Feb-07-2025_13-27-12/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v11/Mar-06-2025_01-14-08/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v12_3/Mar-07-2025_00-54-13/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v12_4/Mar-07-2025_00-56-26/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_v14_4/Mar-07-2025_17-00-49/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_4_32/Mar-31-2025_13-16-54/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Instruments_LcRec/Apr-24-2025_16-07-54/best_collision_model.pth'
-
-
-#dataset = "Games"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Games/Jan-23-2025_12-40-19/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Tiger_Games/Jan-23-2025_14-40-53/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Games_v5/Feb-06-2025_11-45-56/best_collision_model.pth'
-
-#dataset = "Yelp"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Yelp/Jan-23-2025_13-37-29/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Tiger_Yelp/Jan-23-2025_14-42-27/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Yelp_v5/Feb-06-2025_12-59-21/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Yelp/Apr-27-2025_22-34-16/best_collision_model.pth'
-
-#dataset = "Beauty"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Beauty/Jan-23-2025_13-34-26/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Tiger_Beauty/Jan-23-2025_15-29-40/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Beauty_v5/Feb-06-2025_11-35-01/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_Beauty/Apr-27-2025_00-50-18/best_collision_model.pth'
-
-dataset = "ml_1m"
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_4_ml_1m_kmeans/Mar-28-2025_22-14-00/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_3_ml_1m/Apr-02-2025_15-34-17/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_ml_1m_4layer_128/Apr-25-2025_13-15-31/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_ml_1m_6layer/May-11-2025_14-46-10/best_collision_model.pth'
-#ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_ml_1m_7layer/May-14-2025_16-46-55/best_collision_model.pth'
-ckpt_path = '/home/longfeng/projects/GenRec/LC-Rec/index/ckpt/Hyp_ml_1m_7layer/May-14-2025_16-48-21/best_collision_model.pth'
-
-
-output_dir = f"/home/longfeng/projects/GenRec/LC-Rec/data/{dataset}/"
-output_file = f"{dataset}.index_hyper_8layer.json"
+# dataset='ml_1m', valid value:["Arts", "Instruments", "ml_1m"]
+# parameters: dataset, output_dir, output_file
 output_file = os.path.join(output_dir,output_file)
 device = torch.device("cuda:0")
 
@@ -133,7 +80,7 @@ data_loader = DataLoader(data,num_workers=args.num_workers,
 
 all_indices = []
 all_indices_str = []
-prefix = ["<a_{}>","<b_{}>","<c_{}>","<d_{}>","<e_{}>","<f_{}>", "<g_{}>", "<h_{}>"]
+prefix = ["<a_{}>","<b_{}>","<c_{}>","<d_{}>","<e_{}>","<f_{}>"]
 
 for d in tqdm(data_loader):
     d = d.to(device)
