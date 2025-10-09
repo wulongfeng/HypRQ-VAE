@@ -67,11 +67,6 @@ class HypRQVAE(nn.Module):
                                        dropout=self.dropout_prob,bn=self.bn)
 
     def forward(self, x, use_sk=True):
-        # x = self.encoder(x)
-        # x_q, rq_loss, indices = self.rq(x,use_sk=self.use_sk)
-        # out = self.decoder(x_q)
-        # return out, rq_loss, indices
-        
         x = self.encoder(x)
         hx = self.manifold.expmap0(x)
         hx_q, rq_loss, indices = self.rq(hx, use_sk=self.use_sk)
@@ -79,14 +74,6 @@ class HypRQVAE(nn.Module):
         out = self.decoder(x_q)
         return out, rq_loss, indices
     
-
-
-    #@torch.no_grad()
-    # def get_indices(self, xs, use_sk=False):
-    #     #print(f'using sk or not while getting indices: {use_sk}')
-    #     x_e = self.encoder(xs)
-    #     _, _, indices = self.rq(x_e, use_sk=use_sk)
-    #     return indices
     
     @torch.no_grad()
     def get_indices(self, xs, use_sk=False):
