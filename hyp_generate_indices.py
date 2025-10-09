@@ -11,7 +11,6 @@ from tqdm import tqdm
 from torch.utils.data import DataLoader
 
 from datasets import EmbDataset
-#from models.rqvae import RQVAE
 from models.hyper_rqvae import HypRQVAE
 
 import os
