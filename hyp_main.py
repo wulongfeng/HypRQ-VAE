@@ -75,7 +75,6 @@ if __name__ == '__main__':
     print(args)
     print("=================================================")
 
-    #logging.basicConfig(level=logging.DEBUG)
     logging.basicConfig(filename=args.log_path, level=logging.INFO)
 
     """build dataset"""
