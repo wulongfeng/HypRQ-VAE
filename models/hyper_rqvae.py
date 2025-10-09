@@ -13,10 +13,8 @@ from .types_ import *
 class HypRQVAE(nn.Module):
     def __init__(self,
                  in_dim=768,
-                 # num_emb_list=[256,256,256,256],
                  num_emb_list=None,
                  e_dim=64,
-                 # layers=[512,256,128],
                  layers=None,
                  dropout_prob=0.0,
                  bn=False,
@@ -25,7 +23,6 @@ class HypRQVAE(nn.Module):
                  beta=0.25,
                  kmeans_init=False,
                  kmeans_iters=100,
-                 # sk_epsilons=[0,0,0.003,0.01]],
                  sk_epsilons=None,
                  sk_iters=100,
                  use_sk=True
