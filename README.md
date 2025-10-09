@@ -1,34 +1,55 @@
-# HypRQ-VAE
+# HypRQ-VAE: Long-Tail-Aware Item Indexing for Generative Recommender Systems
+This repository contains the official implementation for the paper "HypRQ-VAE: Long-Tail-Aware Item Indexing for Generative Recommender Systems."
 
-This is a repo for the paper titled 'HypRQ‑VAE: Long‑Tail‑Aware Item Indexing for Generative Recommender Systems'
+# 📖 Introduction
+Generative recommender systems, which use large language models (LLMs) to model user behavior, often struggle with a fundamental challenge: bridging the gap between an LLM's text-based vocabulary and the discrete item IDs used in recommender systems. This mismatch can lead to **hallucinations** and poor performance, especially when dealing with the **long-tail distribution** of real-world item catalogs, where a small number of popular "head" items coexist with a vast number of less popular "tail" items.
 
-# Introduction
-Sequential recommender systems model user behavior as item‑ID sequences, while recent generative methods cast recommendation as a language task for large language models (LLMs). 
-This shift enables the incorporation of richer textual semantics but introduces a fundamental mismatch: LLMs operate on text tokens, whereas recommender systems depend on discrete item indices. This misalignment often leads to hallucinations in generative recommendations. Some efforts attempt to bridge the gap with Euclidean item vocabularies, but they struggle with the long‑tailed distribution typical of real catalogs, where a small number of head items dominate and a vast number of tail items reflect users' niche preferences. To address this issue, we introduce Hyperbolic Residual-Quantized Variational AutoEncoder (HypRQ‑VAE), the first framework to learn item indexing in hyperbolic space. Leveraging the exponential expansion volume of the hyperbolic geometry, HypRQ‑VAE encodes rich textual semantics while naturally capturing the power law structure of user-item interactions and preserving the fidelity of tail items without aggressive compression. Experiments on three benchmark datasets show that HypRQ‑VAE significantly improves the performance of recommendation, especially for tail items, outperforming Euclidean baselines. Our analysis attributes these gains to the unique representational capacity of hyperbolic space in generative recommendation. 
+**HypRQ-VAE** is the first framework to address this by learning item indexing in **hyperbolic space**.  Unlike traditional Euclidean models, hyperbolic geometry's exponential expansion volume naturally aligns with the power-law structure of user-item interactions. This allows HypRQ-VAE to encode rich textual semantics while preserving the fidelity of **tail items** without aggressive compression. Our experiments on three benchmark datasets demonstrate that HypRQ-VAE significantly improves recommendation performance, particularly for long-tail items, outperforming Euclidean baselines.
 
-# Requirements
-To install requirements, run:
+# ⚙️ Requirements and Setup
+To set up the environment, clone the repository and run the following commands.
+* Create the Conda environment from the provided `environment.yml` file:
 
-``` conda env create -f environment.yml ```
+  ```conda env create -f environment.yml ```
+* Activate the newly created environment:
 
-```conda activate hyper_rqvae```
+   ```conda activate hyper_rqvae ```
 
-# Stage 1 -- Generation of Hyperbolic Semantic IDs
-## Train
-```bash train_tokenizer.sh ```
+# 🚀 Getting Started
+This project involves a two-stage process: first, generating the hyperbolic semantic IDs, and second, using these IDs to fine-tune a generative recommender model.
 
-## Item Indexing
-```bash generate_tokenizer.sh ```
+## 🛠 Stage 1 -- Generation of Hyperbolic Semantic IDs
+This stage involves training the HypRQ-VAE model to learn the hyperbolic item embeddings and generate the hyperbolic semantic IDs.
 
-# Stage 2 -- Generative Recommender with Hyperbolic Semantic IDs
-## Fine-tuning with Encoder-Decoder Model
-```bash fine-tuning/run_train_t5.sh ```
+1. Train the HypRQ-VAE Model
+Run the following script to train the tokenizer (the HypRQ-VAE model):
+ 
+    ```bash train_tokenizer.sh ```
 
-## Fine-tuning with Decoder-only Model
-```bash fine-tuning/run_train.sh ```
+2. Generate Hyperbolic Semantic IDs
+After training, use the following command to generate the final item IDs:
 
-## Test with Encoder-Decoder Model
-```bash fine-tuning/run_test.sh ```
+    ```bash generate_tokenizer.sh ```
 
-## Test with Decoder-only Model
-```bash fine-tuning/run_test.sh ```
+## 💻 Stage 2 -- Generative Recommender with Hyperbolic Semantic IDs 
+This stage uses the generated hyperbolic semantic IDs to fine-tune a generative recommender model for the recommendation task. You can choose between an encoder-decoder or a decoder-only architecture.
+
+### Fine-tuning
+1. Encoder-Decoder Model (e.g., T5)
+
+   ```bash fine-tuning/run_train_t5.sh ```
+
+2. Decoder-only Model (e.g., Llama)
+   
+    ```bash fine-tuning/run_train.sh ```
+
+### Testing
+1. Encoder-Decoder Model (e.g., T5)
+
+    ```bash fine-tuning/run_test_t5.sh ```
+
+2. Decoder-only Model (e.g., Llama)
+
+    ```bash fine-tuning/run_test.sh ```
+
+  
