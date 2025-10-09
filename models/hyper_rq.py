@@ -47,12 +47,6 @@ class HypResidualVectorQuantizer(nn.Module):
         residual = x
         for quantizer in self.vq_layers:
             x_res, loss, indices = quantizer(residual, use_sk=use_sk)
-            
-            #residual = residual - x_res
-            #x_q = x_q + x_res
-            #print(f'residual:{residual}')
-            #print(f'x_res:{x_res}')
-            #print(f'x_q:{x_q}')
 
             residual = mobius.mobius_minus(residual, x_res)
             x_q = mobius.mobius_add(x_q, x_res)
