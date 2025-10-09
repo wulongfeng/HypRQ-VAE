@@ -27,5 +27,8 @@ To install requirements, run:
 ## Fine-tuning with Decoder-only Model
 ```bash fine-tuning/run_train.sh ```
 
-## Test
+## Test with Encoder-Decoder Model
+```bash fine-tuning/run_test.sh ```
+
+## Test with Decoder-only Model
 ```bash fine-tuning/run_test.sh ```
