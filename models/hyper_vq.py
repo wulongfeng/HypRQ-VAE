@@ -42,15 +42,6 @@ class HypVectorQuantizer(nn.Module):
 
         return z_q
 
-    # def init_emb(self, data):
-    #     centers = kmeans(
-    #         data,
-    #         self.n_e,
-    #         self.kmeans_iters,
-    #     )
-    #     self.embedding.weight.data.copy_(centers)
-    #     self.initted = True
-
     def init_emb(self, data):
         print('Initialization with kmeans....')
         centers = hyp_kmeans(
@@ -84,11 +75,6 @@ class HypVectorQuantizer(nn.Module):
         if not self.initted and self.training:
             self.init_emb(latent)
 
-        #Calculate the L2 Norm between latent and Embedded weights
-        # d = torch.sum(latent**2, dim=1, keepdim=True) + \
-        #     torch.sum(self.embedding.weight**2, dim=1, keepdim=True).t()- \
-        #     2 * torch.matmul(latent, self.embedding.weight.t())
-
         latent_norm_sq = torch.sum(latent**2, dim=1, keepdim=True)  # Shape (N, 1)
         embedding_norm_sq = torch.sum(self.embedding.weight**2, dim=1, keepdim=True).t()  # Shape (1, M)
         euclidean_sq_dist = torch.sum((latent.unsqueeze(1) - self.embedding.weight.unsqueeze(0)) **2, dim=2)  # Shape (N, M)
@@ -106,8 +92,6 @@ class HypVectorQuantizer(nn.Module):
                 print(f"Sinkhorn Algorithm returns nan/inf values.")
             indices = torch.argmax(Q, dim=-1)
 
-        # indices = torch.argmin(d, dim=-1)
-
         x_q = self.embedding(indices).view(x.shape)
 
         # compute loss for embedding
@@ -117,8 +101,6 @@ class HypVectorQuantizer(nn.Module):
 
         # preserve gradients
         x_q = x + (x_q - x).detach()
-        #residual = mobius.mobius_minus(x_q, x).detach()
-        #x_q = mobius.mobius_add(x, residual)
 
         indices = indices.view(x.shape[:-1])
 
