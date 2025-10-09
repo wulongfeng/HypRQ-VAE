@@ -120,11 +120,6 @@ class Hyp_Trainer(object):
                     ncols=100,
                     desc=set_color(f"Train {epoch_idx}","pink"),
                     )
-#         iter_data = tqdm(
-#                     train_data,
-#                     total=len(train_data),
-#                     ncols=100,
-#                     )
 
         for batch_idx, data in enumerate(iter_data):
             data = data.to(self.device)
