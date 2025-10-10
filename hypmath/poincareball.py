@@ -71,15 +71,6 @@ class PoincareBall(PoincareBallParent):
 
 
 class PoincareBallExact(PoincareBall):
-    __doc__ = r"""
-    See Also
-    --------
-    :class:`PoincareBall`
-    Notes
-    -----
-    The implementation of retraction is an exact exponential map, this retraction will be used in optimization
-    """
-
     retr_transp = PoincareBall.expmap_transp
     transp_follow_retr = PoincareBall.transp_follow_expmap
     retr = PoincareBall.expmap
