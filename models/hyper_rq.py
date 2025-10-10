@@ -42,7 +42,6 @@ class HypResidualVectorQuantizer(nn.Module):
         all_losses = []
         all_indices = []
 
-        #x_q = 0
         x_q = torch.tensor(0.0)
         residual = x
         for quantizer in self.vq_layers:
