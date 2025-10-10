@@ -58,31 +58,12 @@ class Hyp_Trainer(object):
         weight_decay = self.weight_decay
 
         if learner.lower() == "adam":
-            #optimizer = optim.Adam(params, lr=learning_rate, weight_decay=weight_decay)
             optimizer = geo_optim.RiemannianAdam(params, lr=learning_rate, weight_decay=weight_decay)
-        elif learner.lower() == "sgd":
-            optimizer = optim.SGD(params, lr=learning_rate, weight_decay=weight_decay)
-        elif learner.lower() == "adagrad":
-            optimizer = optim.Adagrad(
-                params, lr=learning_rate, weight_decay=weight_decay
-            )
-            for state in optimizer.state.values():
-                for k, v in state.items():
-                    if torch.is_tensor(v):
-                        state[k] = v.to(self.device)
-        elif learner.lower() == "rmsprop":
-            optimizer = optim.RMSprop(
-                params, lr=learning_rate, weight_decay=weight_decay
-            )
-        elif learner.lower() == 'adamw':
-            optimizer = optim.AdamW(
-                params, lr=learning_rate, weight_decay=weight_decay
-            )
         else:
             self.logger.warning(
                 "Received unrecognized optimizer, set default Adam optimizer"
             )
-            optimizer = optim.Adam(params, lr=learning_rate)
+            optimizer = geo_optim.RiemannianAdam(params, lr=learning_rate, weight_decay=weight_decay)
         return optimizer
 
     def _get_scheduler(self):
@@ -178,12 +159,6 @@ class Hyp_Trainer(object):
             "optimizer": self.optimizer.state_dict(),
         }
         torch.save(state, ckpt_path, pickle_protocol=4)
-
-        #self.logger.info(
-            #set_color("Saving current", "blue") + f": {ckpt_path}"
-            #f"Saving current: {ckpt_path}"
-        #)
-
         return ckpt_path
 
     def _generate_train_loss_output(self, epoch_idx, s_time, e_time, loss, recon_loss):
