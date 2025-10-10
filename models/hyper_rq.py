@@ -5,11 +5,6 @@ from .hyper_vq import HypVectorQuantizer
 from hypmath import mobius
 
 class HypResidualVectorQuantizer(nn.Module):
-    """ References:
-        SoundStream: An End-to-End Neural Audio Codec
-        https://arxiv.org/pdf/2107.03312.pdf
-    """
-
     def __init__(self, n_e_list, e_dim, sk_epsilons, manifold, beta = 0.25,
                  kmeans_init = False, kmeans_iters = 100, sk_iters=100,):
         super().__init__()
