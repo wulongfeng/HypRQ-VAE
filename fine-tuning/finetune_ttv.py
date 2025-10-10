@@ -41,11 +41,6 @@ class MetricsComputer:
         decoded_preds = [pred.strip() for pred in decoded_preds]
         decoded_labels = [label.strip() for label in decoded_labels]
 
-        #print(f'len of decoded preds: {len(decoded_preds)}')
-        #print(f'decoded preds: {decoded_preds}')
-        #print(f'len of decoded labels: {len(decoded_labels)}')
-        #print(f'decoded labels: {decoded_labels}')
-
         hit_rate = self.calculate_hit_rate(decoded_preds, decoded_labels)
         ndcg = self.calculate_ndcg(decoded_preds, decoded_labels)
 
@@ -74,8 +69,6 @@ class MetricsComputer:
             dcg = sum([rel[i] / np.log2(i + 2) for i in range(len(rel))])
             ndcg_scores.append(dcg / idcg)
         return np.mean(ndcg_scores)
-
-
 
 def train(args):
     wandb.init(project='Training Semantic IDs on full dataset with max length 50',
@@ -131,8 +124,6 @@ def train(args):
         print("data num:", len(train_data))
         tokenizer.save_pretrained(args.output_dir)
         config.save_pretrained(args.output_dir)
-        #print(train_data[100])
-        #print(valid_data[100])
 
 
     collator = Collator(args, tokenizer)
@@ -143,13 +134,6 @@ def train(args):
     if local_rank == 0:
         print(model)
 
-
-    # if not ddp and torch.cuda.device_count() > 1:
-    #     model.is_parallelizable = True
-    #     model.model_parallel = True
-
-    #print(f'training data: {train_data[0]}')
-    #print(f'validation data: {valid_data[0]}')
     metrics_computer = MetricsComputer(tokenizer)
     trainer = transformers.Trainer(
         model=model,
@@ -165,20 +149,15 @@ def train(args):
             learning_rate=args.learning_rate,
             weight_decay=args.weight_decay,
             lr_scheduler_type=args.lr_scheduler_type,
-            # fp16=args.fp16,
-            # bf16=args.bf16,
-            #fp16=True,
             logging_dir="./logs",
             logging_steps=args.logging_step,
             optim=args.optim,
-            # gradient_checkpointing=gradient_checkpointing,
             eval_strategy=args.save_and_eval_strategy,
             save_strategy=args.save_and_eval_strategy,
             eval_steps=args.save_and_eval_steps,
             save_steps=args.save_and_eval_steps,
             output_dir=args.output_dir,
             load_best_model_at_end=True,
-            # deepspeed=args.deepspeed,
             ddp_find_unused_parameters=False if ddp else None,
             report_to=['wandb'],
             eval_delay= 1 if args.save_and_eval_strategy=="epoch" else 2000,
@@ -186,11 +165,6 @@ def train(args):
         tokenizer=tokenizer,
         data_collator=collator,
         callbacks=[EarlyStoppingCallback(early_stopping_patience=20)]
-        #compute_metrics=metrics_computer.compute_metrics,
-        #callbacks = [
-        #    EarlyStoppingCallback(early_stopping_patience=20),
-        #    MetricsCallback()
-        #    ]
     )
     model.config.use_cache = False
 
@@ -202,8 +176,6 @@ def train(args):
     
     trainer.save_state()
     trainer.save_model(output_dir=args.output_dir)
-
-
 
 
 if __name__ == "__main__":
