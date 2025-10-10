@@ -109,12 +109,10 @@ class Hyp_Trainer(object):
             loss, loss_recon = self.model.compute_loss(out, rq_loss, xs=data)
             self._check_nan(loss)
             loss.backward()
-            #torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
             if self.grad_clip is not None:
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
             self.optimizer.step()
             self.scheduler.step()
-            # print(self.scheduler.get_last_lr())
             total_loss += loss.item()
             total_recon_loss += loss_recon.item()
 
