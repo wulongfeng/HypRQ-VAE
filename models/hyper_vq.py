@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-#from .layers import kmeans, sinkhorn_algorithm
 from .hyper_layers import hyp_kmeans, sinkhorn_algorithm
 from hypmath import mobius
 
