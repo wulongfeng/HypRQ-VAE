@@ -39,7 +39,6 @@ def parse_args():
     parser.add_argument("--dropout_prob", type=float, default=0.0, help="dropout ratio")
     parser.add_argument("--bn", type=bool, default=False, help="use bn or not")
     parser.add_argument("--loss_type", type=str, default="mse", help="loss_type")
-    #parser.add_argument("--kmeans_init", type=bool, default=True, help="use kmeans_init or not")
     parser.add_argument("--kmeans_iters", type=int, default=100, help="max kmeans iters")
     parser.add_argument('--sk_epsilons', type=float, nargs='+', default=[0.0, 0.0, 0.0], help="sinkhorn epsilons")
     parser.add_argument("--sk_iters", type=int, default=50, help="max sinkhorn iters")
