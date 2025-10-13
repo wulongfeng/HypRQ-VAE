@@ -36,6 +36,7 @@ def get_topk_results(predictions, scores, targets, k, all_items=None):
 
     return results
 
+
 def extract_items_string(text):
     m = _span_pat.search(text)
     if m:
@@ -86,9 +87,6 @@ def get_detailed_topk_results(predictions, scores, targets, k, all_items=None):
     detailed_results['pred_list'] = pred_list
 
     return detailed_results
-
-
-
 
 
 def get_metrics_results(topk_results, metrics):

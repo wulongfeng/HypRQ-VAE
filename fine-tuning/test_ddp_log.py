@@ -18,6 +18,10 @@ from utils import *
 from collator import TestCollator
 from prompt import all_prompt
 from evaluate import get_topk_results, get_metrics_results, get_detailed_topk_results
+# import os
+
+# os.environ['MASTER_ADDR'] = 'localhost'
+# os.environ['MASTER_PORT'] = '5678'
 from types import SimpleNamespace
 
 def test_ddp(args):
@@ -137,6 +141,8 @@ def test_ddp(args):
                 output = tokenizer.batch_decode(
                     output_ids, skip_special_tokens=True
                 )
+                #topk_res = get_topk_results(output, scores, targets, num_beams,
+                #                            all_items=all_items if args.filter_items else None)
                 detailed_res = get_detailed_topk_results(output, scores, targets, num_beams,
                                             all_items=all_items if args.filter_items else None)
                 topk_res = detailed_res['results']
@@ -164,6 +170,7 @@ def test_ddp(args):
 
                 raw_data_gather_list = [None for _ in range(world_size)]
                 dist.all_gather_object(obj=combined_raw_data, object_list=raw_data_gather_list)
+                #print(f'len of raw data gather:{len(raw_data_gather_list)}, raw data gather list:{raw_data_gather_list}')
 
                 if local_rank == 0:
                     for raw_data in raw_data_gather_list:
@@ -233,6 +240,35 @@ def test_ddp(args):
         with open(args.results_detail_file, 'w') as f:
             json.dump(merged_predction_results, f)
         print('Saving raw predictions: ', args.results_detail_file)
+
+def build_parser():
+    p = argparse.ArgumentParser(description="LLMRec_test")
+    # Keep using the helpers you already have
+    p = parse_global_args(p)
+    p = parse_dataset_args(p)
+    p = parse_test_args(p)
+
+    p.set_defaults(
+        # checkpoint & model
+        ckpt_path="./ckpt/ml_1m_tiger/",
+        base_model="huggyllama/llama-7b",
+
+        # data
+        dataset="ml_1m",
+        data_path="../data",
+        index_file=".index_tiger.json",
+        inter_file=".inter.json",
+
+        # output files
+        results_file="./results/ml_1m/ddp_results_tiger.json",
+        results_detail_file="./results/ml_1m/ddp_details_tiger.json",
+
+        # test hyper-parameters
+        test_batch_size=4,
+        num_beams=20,
+        test_prompt_ids=0,
+    )
+    return p
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="LLMRec_test")
