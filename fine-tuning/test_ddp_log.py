@@ -67,10 +67,6 @@ def test_ddp(args):
     if args.test_prompt_ids == "all":
         if args.test_task.lower() == "seqrec":
             prompt_ids = range(len(all_prompt["seqrec"]))
-        elif args.test_task.lower() == "itemsearch":
-            prompt_ids = range(len(all_prompt["itemsearch"]))
-        elif args.test_task.lower() == "fusionseqrec":
-            prompt_ids = range(len(all_prompt["fusionseqrec"]))
     else:
         prompt_ids = [int(_) for _ in args.test_prompt_ids.split(",")]
 
@@ -95,9 +91,7 @@ def test_ddp(args):
     metrics = args.metrics.split(",")
     all_prompt_results = []
     with torch.no_grad():
-
         for prompt_id in prompt_ids:
-
             if local_rank == 0:
                 print("Start prompt: ",prompt_id)
 
