@@ -84,6 +84,7 @@ def parse_train_args(parser):
     parser.add_argument("--save_and_eval_steps", type=int, default=1000)
     parser.add_argument("--fp16",  action="store_true", default=False)
     parser.add_argument("--bf16", action="store_true", default=True)
+    parser.add_argument("--deepspeed", type=str, default="./config/ds_z2_bf16.json")
     parser.add_argument("--wandb_run_name", type=str, default="default")
     parser.add_argument("--temperature", type=float, default=1.0)
 
